@@ -3,199 +3,180 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>1.3.6 Source Code</title>
+    <title>PySide6 GUI Exercise</title>
     <style>
-        /* Basic styling for the navigation bar */
-        nav {
-            background-color:antiquewhite;
-            padding: 10px;
-            border-radius: 8px;
-            display: flex;
-            gap: 20px;
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f9f9f9;
+            line-height: 1.6;
         }
 
-        nav a {
-            text-decoration: none;
+        h1, h2 {
             color: #333;
-            font-weight: bold;
-            padding: 8px 16px;
-            border-radius: 4px;
         }
 
-        nav a:hover {
-            background-color: #ddd;
-        }
-
-        nav a.active {
-            background-color: #333;
-            color: white;
-        }
-
-        /* Styling for source code section */
         pre {
-            background-color: #f5f5f5;
+            background-color: #272822;
+            color: #f8f8f2;
             padding: 15px;
             border-radius: 8px;
             overflow-x: auto;
             white-space: pre-wrap;
+            word-wrap: break-word;
+            font-family: "Courier New", monospace;
+            position: relative;
         }
 
-        code {
-            font-family: monospace;
-        }
-
-        /* Copy button styling */
-        .copy-btn {
-            margin-top: 10px;
-            padding: 8px 16px;
-            background-color: #333;
+        button {
+            background-color: #007BFF;
             color: white;
             border: none;
-            border-radius: 4px;
+            padding: 10px;
+            margin-top: 10px;
             cursor: pointer;
+            border-radius: 5px;
+            font-size: 14px;
         }
 
-        .copy-btn:hover {
-            background-color: #555;
+        button:hover {
+            background-color: #0056b3;
         }
     </style>
 </head>
 <body>
-    <!-- Navigation Bar -->
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="definition.html">Definition</a>
-        <a href="coding_platform.html">Coding Platform</a>
-        <a href="installation.html">Installation</a>
-        <a href="source_code.html" class="active">Source Code</a>
-    </nav>
+    <header>
+        <h1>PySide6 To-Do List GUI Exercise</h1>
+        <p>This exercise demonstrates how to build a GUI application using PySide6 and Object-Oriented Programming (OOP).</p>
+    </header>
 
-    <h1>1.3.6 Source Code</h1>
+    <section>
+        <h2>Understanding the Code</h2>
+        <article>
+            <h3>1. Task Class (Encapsulation)</h3>
+            <p>The <code>Task</code> class defines individual tasks. It keeps track of a task's description and status (done or pending).</p>
+        </article>
 
-    <h2>📝 Full Code</h2>
-    <pre><code id="sourceCode">
-from PySide6.QtWidgets import QApplication, QWidget, QVBoxLayout, QLabel, QLineEdit, QPushButton, QTextEdit
+        <article>
+            <h3>2. ToDoApp Class (Inheritance)</h3>
+            <p>The <code>ToDoApp</code> class inherits from <code>QWidget</code> and builds the entire GUI using PySide6.</p>
+        </article>
+
+        <article>
+            <h3>3. Methods (Polymorphism)</h3>
+            <p>The class contains methods to add, mark as done, and delete tasks.</p>
+        </article>
+    </section>
+
+    <section>
+        <h2>Python Code</h2>
+        <p>Click the button below to copy the code.</p>
+        <pre id="codeBlock"><code>
+from PySide6.QtWidgets import QApplication, QWidget, QVBoxLayout, QLabel, QLineEdit, QPushButton, QListWidget, QMessageBox
 import sys
 
-# Student Class (Encapsulation)
-class Student:
-    def __init__(self, name, age, course):
-        self.name = name
-        self.age = age
-        self.course = course
+class Task:
+    def __init__(self, description):
+        self.description = description
+        self.completed = False
+
+    def mark_done(self):
+        self.completed = True
 
     def get_details(self):
-        return f"Name: {self.name}, Age: {self.age}, Course: {self.course}"
+        status = "✔️ Done" if self.completed else "❌ Pending"
+        return f"{self.description} - {status}"
 
-# Main App Class (Inheritance from QWidget)
-class StudentApp(QWidget):
+class ToDoApp(QWidget):
     def __init__(self):
         super().__init__()
-        self.setWindowTitle("Student Registration System")
-        self.setGeometry(200, 200, 400, 300)
+        self.setWindowTitle("To-Do List Manager")
+        self.setGeometry(200, 200, 400, 350)
+
+        self.tasks = []
+
+        self.label_task = QLabel("Enter Task:")
+        self.input_task = QLineEdit()
         
-        self.students = []  # List to store student objects
+        self.add_button = QPushButton("Add Task")
+        self.add_button.clicked.connect(self.add_task)
 
-        # UI Elements
-        self.label_name = QLabel("Name:")
-        self.input_name = QLineEdit()
+        self.mark_done_button = QPushButton("Mark as Done")
+        self.mark_done_button.clicked.connect(self.mark_task_done)
 
-        self.label_age = QLabel("Age:")
-        self.input_age = QLineEdit()
+        self.delete_button = QPushButton("Delete Task")
+        self.delete_button.clicked.connect(self.delete_task)
 
-        self.label_course = QLabel("Course:")
-        self.input_course = QLineEdit()
+        self.task_list = QListWidget()
 
-        self.register_button = QPushButton("Register Student")
-        self.register_button.clicked.connect(self.register_student)
-
-        self.result_display = QTextEdit()
-        self.result_display.setReadOnly(True)
-
-        # Layout (Vertical)
         layout = QVBoxLayout()
-        layout.addWidget(self.label_name)
-        layout.addWidget(self.input_name)
-        layout.addWidget(self.label_age)
-        layout.addWidget(self.input_age)
-        layout.addWidget(self.label_course)
-        layout.addWidget(self.input_course)
-        layout.addWidget(self.register_button)
-        layout.addWidget(self.result_display)
-        
+        layout.addWidget(self.label_task)
+        layout.addWidget(self.input_task)
+        layout.addWidget(self.add_button)
+        layout.addWidget(self.mark_done_button)
+        layout.addWidget(self.delete_button)
+        layout.addWidget(self.task_list)
+
         self.setLayout(layout)
 
-    # Function to register a student
-    def register_student(self):
-        name = self.input_name.text()
-        age = self.input_age.text()
-        course = self.input_course.text()
-
-        if name and age and course:
-            student = Student(name, age, course)
-            self.students.append(student)  # Store the student object
-            self.result_display.append(student.get_details())  # Display student info
-
-            # Clear input fields
-            self.input_name.clear()
-            self.input_age.clear()
-            self.input_course.clear()
+    def add_task(self):
+        task_desc = self.input_task.text()
+        if task_desc:
+            task = Task(task_desc)
+            self.tasks.append(task)
+            self.task_list.addItem(task.get_details())
+            self.input_task.clear()
         else:
-            self.result_display.append("⚠️ Please fill all fields!")
+            QMessageBox.warning(self, "Warning", "Task description cannot be empty!")
 
-# Run the App
+    def mark_task_done(self):
+        selected_item = self.task_list.currentRow()
+        if selected_item >= 0:
+            self.tasks[selected_item].mark_done()
+            self.task_list.item(selected_item).setText(self.tasks[selected_item].get_details())
+        else:
+            QMessageBox.warning(self, "Warning", "Select a task to mark as done!")
+
+    def delete_task(self):
+        selected_item = self.task_list.currentRow()
+        if selected_item >= 0:
+            del self.tasks[selected_item]
+            self.task_list.takeItem(selected_item)
+        else:
+            QMessageBox.warning(self, "Warning", "Select a task to delete!")
+
 app = QApplication(sys.argv)
-window = StudentApp()
+window = ToDoApp()
 window.show()
 app.exec()
-    </code></pre>
-    <button class="copy-btn" onclick="copyCode()">📋 Copy Code</button>
+        </code></pre>
+        <button onclick="copyCode()">Copy Code</button>
+    </section>
 
-    <h2>📌 Explanation</h2>
-    <p>1. <strong>Class Student (Encapsulation)</strong><br>Stores <code>name</code>, <code>age</code>, and <code>course</code> with a method to return details.</p>
-
-    <p>2. <strong>Class StudentApp (GUI)</strong><br>Inherits from <code>QWidget</code> (OOP: <em>Inheritance</em>) and creates input fields, buttons, and display areas.</p>
-
-    <p>3. <strong>register_student() Function</strong><br>Collects input, creates <code>Student</code> objects, displays data, and clears inputs.</p>
-
-    <h2>🔹 Features</h2>
-    <ul>
-        <li>✅ Easy input fields for student details</li>
-        <li>✅ Click button to register a student</li>
-        <li>✅ List of registered students appears in a text box</li>
-        <li>✅ OOP-based, extendable for more features</li>
-    </ul>
-
-    <h2>🔹 Next Steps (Advanced Features)</h2>
+    <h2>🔹 More PySide6 Exercise Projects</h2>
     <ol>
-        <li>💾 <strong>Database (SQLite)</strong> → Save student data permanently.</li>
-        <li>✏️ <strong>Editing & Deleting Students</strong> → Modify or remove entries.</li>
-        <li>🔍 <strong>Sorting & Searching</strong> → Filter by name, age, or course.</li>
+        <li>Simple Calculator – Basic arithmetic operations with a GUI.</li>
+        <li>To-Do List App – Add, remove, and mark tasks as completed.</li>
+        <li>Digital Clock – Displays current time and updates every second.</li>
+        <li>Temperature Converter – Convert Celsius to Fahrenheit and vice versa.</li>
+        <li>Login Form – Simple username/password input with validation.</li>
+        <li>Text Editor – Basic notepad with open/save file functionality.</li>
+        <li>Currency Converter – Convert values between different currencies.</li>
+        <li>Random Quote Generator – Display a random motivational quote.</li>
+        <li>Flashcard App – Flip through study flashcards.</li>
+        <li>BMI Calculator – Input height and weight to calculate BMI.</li>
     </ol>
 
-    <h2>🎯 Summary</h2>
-    <p>This project teaches <strong>PySide6 GUI</strong> and <strong>OOP principles</strong> in a real-world example. 🚀</p>
-
-    <!-- JavaScript for Copy Button -->
     <script>
         function copyCode() {
-            const codeBlock = document.getElementById('sourceCode');
-            const range = document.createRange();
-            range.selectNode(codeBlock);
-            window.getSelection().removeAllRanges();
-            window.getSelection().addRange(range);
-
-            try {
-                document.execCommand('copy');
-                alert('✅ Code copied to clipboard!');
-            } catch (err) {
-                alert('❌ Failed to copy!');
-            }
-
-            window.getSelection().removeAllRanges();
+            const codeBlock = document.getElementById("codeBlock").innerText;
+            navigator.clipboard.writeText(codeBlock).then(() => {
+                alert("Code copied to clipboard!");
+            }).catch(err => {
+                alert("Failed to copy code!");
+            });
         }
     </script>
 </body>
 </html>
-<h2>📖 More Practice</h2>
-<p>Want to practice more? Try some additional exercises! 👉 <a href="Exercises.html">More Exercises</a></p>
+
