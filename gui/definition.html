@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1.3.2 Definition of PySide6</title>     
+    <style>
+        /* Basic styling for the navigation bar */
+        nav {
+            background-color: antiquewhite;
+            padding: 10px;
+            border-radius: 8px;
+            display: flex;
+            gap: 20px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+            padding: 8px 16px;
+            border-radius: 4px;
+        }
+
+        nav a:hover {
+            background-color: #ddd;
+        }
+
+        nav a.active {
+            background-color: #333;
+            color: white;
+        }
+
+        /* Additional styling for better readability */
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+        }
+
+        h1, h2 {
+            margin-top: 20px;
+        }
+
+        ul, ol {
+            margin-left: 20px;
+        }
+
+        strong {
+            font-weight: bold;
+        }
+
+        .project-section {
+            margin-top: 40px;
+            padding: 20px;
+            border-top: 2px solid #ccc;
+        }
+
+        .project-section h2 {
+            margin-bottom: 10px;
+        }
+
+        .project-section ul {
+            list-style: disc;
+            margin-left: 40px;
+        }
+
+        .source-link {
+            margin-top: 20px;
+            display: inline-block;
+            padding: 10px 15px;
+            background-color: #333;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+
+        .source-link:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="definition.html" class="active">Definition</a>
+        <a href="coding_platform.html">Coding Platform</a>
+        <a href="installation.html">Installation</a>
+    </nav>
+
+    <h1>1.3.2 Definition of PySide6</h1>
+    <p>
+        <strong>PySide</strong> - Similar to PyQt but with a more flexible licensing model. A flexible licensing model means that PySide has a more permissive license compared to PyQt, making it easier to use in both open-source and commercial projects without legal restrictions.
+    </p>
+    <p>
+        <strong>*</strong> Since PySide6 is LGPL (Lesser General Public License), you don’t have to worry about licensing issues for personal or business projects.
+    </p>
+
+    <h2>What is Open Source?</h2>
+    <ol>
+        <li><strong>Open-Source Projects</strong><br>
+            These are projects where the source code is publicly available and can be modified, shared, and used by anyone.
+            <br>Examples:
+            <ul>
+                <li>DeepSeek</li>
+                <li>Linux</li>
+                <li>Firefox</li>
+                <li>Blender</li>
+            </ul>
+        </li>
+        <li><strong>Commercial Projects</strong><br>
+            These are for-profit projects where the source code is private and not freely shared.
+            <br>Examples:
+            <ul>
+                <li>ChatGPT</li>
+                <li>Microsoft Word</li>
+                <li>Adobe Photoshop</li>
+                <li>Paid mobile apps</li>
+            </ul>
+        </li>
+    </ol>
+
+    <p>
+        If you use PySide6 (LGPL) in an open-source project, you can freely distribute your project without restrictions.<br><br>
+        If you use PySide6 (LGPL) in a commercial project, you don’t have to release your source code, but you must ensure that the PySide6 library remains separate and unmodified.
+    </p>
+
+    <p><strong>Note:</strong> Open source doesn't necessarily mean free!</p>
+
+    <!-- OOP and GUI Section -->
+    <div class="project-section">
+        <h2>1.3.5 OOP and GUI</h2>
+        <h3>Project: Simple Student Registration System (Using PySide6 & OOP)</h3>
+
+        <h4>📌 Overview</h4>
+        <p>This project is a basic student registration system with a GUI using PySide6 and OOP. Users can:</p>
+        <ul>
+            <li>✅ Enter student details (Name, Age, and Course)</li>
+            <li>✅ Save the details in a list</li>
+            <li>✅ View the registered students in a text area</li>
+        </ul>
+
+        <h4>🔹 OOP Concepts Used</h4>
+        <ol>
+            <li><strong>Encapsulation</strong> → Student data is stored inside a <code>Student</code> class.</li>
+            <li><strong>Abstraction</strong> → GUI components handle user interaction without exposing inner logic.</li>
+            <li><strong>Inheritance</strong> → <code>StudentApp</code> inherits from <code>QWidget</code> to create the main window.</li>
+            <li><strong>Polymorphism</strong> → Methods are overridden to customize behavior.</li>
+        </ol>
+
+        <a href="source_code.html" class="source-link">View Source Code</a>
+    </div>
+</body>
+</html>

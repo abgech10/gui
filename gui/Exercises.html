@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PySide6 GUI Exercise</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f9f9f9;
+            line-height: 1.6;
+        }
+
+        h1, h2 {
+            color: #333;
+        }
+
+        pre {
+            background-color: #272822;
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            font-family: "Courier New", monospace;
+            position: relative;
+        }
+
+        button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            padding: 10px;
+            margin-top: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Navigation Bar */
+        nav {
+            background-color: antiquewhite;
+            padding: 10px;
+            border-radius: 8px;
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+            padding: 8px 16px;
+            border-radius: 4px;
+        }
+
+        nav a:hover {
+            background-color: #ddd;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <a href="index.html">Home</a>
+    </nav>
+
+    <!-- Page Title -->
+    <header>
+        <h1>PySide6 To-Do List GUI Exercise</h1>
+        <p>This exercise demonstrates how to build a GUI application using PySide6 and Object-Oriented Programming (OOP).</p>
+    </header>
+
+    <!-- Section: Code Explanation -->
+    <section>
+        <h2>Understanding the Code</h2>
+        <article>
+            <h3>1. Task Class (Encapsulation)</h3>
+            <p>The <code>Task</code> class defines individual tasks. It keeps track of a task's description and status (done or pending).</p>
+        </article>
+
+        <article>
+            <h3>2. ToDoApp Class (Inheritance)</h3>
+            <p>The <code>ToDoApp</code> class inherits from <code>QWidget</code> and builds the entire GUI using PySide6.</p>
+        </article>
+
+        <article>
+            <h3>3. Methods (Polymorphism)</h3>
+            <p>The class contains methods to add, mark as done, and delete tasks.</p>
+        </article>
+    </section>
+
+    <!-- Section: Code Snippet -->
+    <section>
+        <h2>Python Code</h2>
+        <p>Click the button below to copy the code.</p>
+        
+        <!-- Code Block -->
+        <pre id="codeBlock"><code>
+from PySide6.QtWidgets import QApplication, QWidget, QVBoxLayout, QLabel, QLineEdit, QPushButton, QListWidget, QMessageBox
+import sys
+
+class Task:
+    def __init__(self, description):
+        self.description = description
+        self.completed = False
+
+    def mark_done(self):
+        self.completed = True
+
+    def get_details(self):
+        status = "✔️ Done" if self.completed else "❌ Pending"
+        return f"{self.description} - {status}"
+
+class ToDoApp(QWidget):
+    def __init__(self):
+        super().__init__()
+        self.setWindowTitle("To-Do List Manager")
+        self.setGeometry(200, 200, 400, 350)
+
+        self.tasks = []
+
+        self.label_task = QLabel("Enter Task:")
+        self.input_task = QLineEdit()
+        
+        self.add_button = QPushButton("Add Task")
+        self.add_button.clicked.connect(self.add_task)
+
+        self.mark_done_button = QPushButton("Mark as Done")
+        self.mark_done_button.clicked.connect(self.mark_task_done)
+
+        self.delete_button = QPushButton("Delete Task")
+        self.delete_button.clicked.connect(self.delete_task)
+
+        self.task_list = QListWidget()
+
+        layout = QVBoxLayout()
+        layout.addWidget(self.label_task)
+        layout.addWidget(self.input_task)
+        layout.addWidget(self.add_button)
+        layout.addWidget(self.mark_done_button)
+        layout.addWidget(self.delete_button)
+        layout.addWidget(self.task_list)
+
+        self.setLayout(layout)
+
+    def add_task(self):
+        task_desc = self.input_task.text()
+        if task_desc:
+            task = Task(task_desc)
+            self.tasks.append(task)
+            self.task_list.addItem(task.get_details())
+            self.input_task.clear()
+        else:
+            QMessageBox.warning(self, "Warning", "Task description cannot be empty!")
+
+    def mark_task_done(self):
+        selected_item = self.task_list.currentRow()
+        if selected_item >= 0:
+            self.tasks[selected_item].mark_done()
+            self.task_list.item(selected_item).setText(self.tasks[selected_item].get_details())
+        else:
+            QMessageBox.warning(self, "Warning", "Select a task to mark as done!")
+
+    def delete_task(self):
+        selected_item = self.task_list.currentRow()
+        if selected_item >= 0:
+            del self.tasks[selected_item]
+            self.task_list.takeItem(selected_item)
+        else:
+            QMessageBox.warning(self, "Warning", "Select a task to delete!")
+
+app = QApplication(sys.argv)
+window = ToDoApp()
+window.show()
+app.exec()
+        </code></pre>
+
+        <!-- Copy Code Button -->
+        <button onclick="copyCode()">Copy Code</button>
+    </section>
+
+    <!-- JavaScript for Copying Code -->
+    <script>
+        function copyCode() {
+            const codeBlock = document.getElementById("codeBlock").innerText;
+            navigator.clipboard.writeText(codeBlock).then(() => {
+                alert("Code copied to clipboard!");
+            }).catch(err => {
+                alert("Failed to copy code!");
+            });
+        }
+    </script>
+
+</body>
+</html>
+
