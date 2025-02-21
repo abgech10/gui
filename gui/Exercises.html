@@ -42,44 +42,14 @@
         button:hover {
             background-color: #0056b3;
         }
-
-        /* Navigation Bar */
-        nav {
-            background-color: antiquewhite;
-            padding: 10px;
-            border-radius: 8px;
-            display: flex;
-            gap: 20px;
-            margin-bottom: 20px;
-        }
-
-        nav a {
-            text-decoration: none;
-            color: #333;
-            font-weight: bold;
-            padding: 8px 16px;
-            border-radius: 4px;
-        }
-
-        nav a:hover {
-            background-color: #ddd;
-        }
     </style>
 </head>
 <body>
-
-    <!-- Navigation Bar -->
-    <nav>
-        <a href="index.html">Home</a>
-    </nav>
-
-    <!-- Page Title -->
     <header>
         <h1>PySide6 To-Do List GUI Exercise</h1>
         <p>This exercise demonstrates how to build a GUI application using PySide6 and Object-Oriented Programming (OOP).</p>
     </header>
 
-    <!-- Section: Code Explanation -->
     <section>
         <h2>Understanding the Code</h2>
         <article>
@@ -98,12 +68,9 @@
         </article>
     </section>
 
-    <!-- Section: Code Snippet -->
     <section>
         <h2>Python Code</h2>
         <p>Click the button below to copy the code.</p>
-        
-        <!-- Code Block -->
         <pre id="codeBlock"><code>
 from PySide6.QtWidgets import QApplication, QWidget, QVBoxLayout, QLabel, QLineEdit, QPushButton, QListWidget, QMessageBox
 import sys
@@ -183,12 +150,23 @@ window = ToDoApp()
 window.show()
 app.exec()
         </code></pre>
-
-        <!-- Copy Code Button -->
         <button onclick="copyCode()">Copy Code</button>
     </section>
 
-    <!-- JavaScript for Copying Code -->
+    <h2>🔹 More PySide6 Exercise Projects</h2>
+    <ol>
+        <li>Simple Calculator – Basic arithmetic operations with a GUI.</li>
+        <li>To-Do List App – Add, remove, and mark tasks as completed.</li>
+        <li>Digital Clock – Displays current time and updates every second.</li>
+        <li>Temperature Converter – Convert Celsius to Fahrenheit and vice versa.</li>
+        <li>Login Form – Simple username/password input with validation.</li>
+        <li>Text Editor – Basic notepad with open/save file functionality.</li>
+        <li>Currency Converter – Convert values between different currencies.</li>
+        <li>Random Quote Generator – Display a random motivational quote.</li>
+        <li>Flashcard App – Flip through study flashcards.</li>
+        <li>BMI Calculator – Input height and weight to calculate BMI.</li>
+    </ol>
+
     <script>
         function copyCode() {
             const codeBlock = document.getElementById("codeBlock").innerText;
@@ -199,7 +177,7 @@ app.exec()
             });
         }
     </script>
-
 </body>
 </html>
+
 
