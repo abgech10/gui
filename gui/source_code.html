@@ -165,7 +165,30 @@ app.exec()
         <li>✅ List of registered students appears in a text box</li>
         <li>✅ OOP-based, extendable for more features</li>
     </ul>
+    <h2>🔍 GUI Components Used</h2>
+    <p>
+    This PySide6 application builds a simple Student Registration System using various GUI elements. The main window is created using <code>QWidget</code>, with a vertical layout (<code>QVBoxLayout</code>) to arrange elements. Labels (<code>QLabel</code>) provide field names, while text input fields (<code>QLineEdit</code>) allow users to enter student details. A button (<code>QPushButton</code>) registers the student, displaying results in a read-only text area (<code>QTextEdit</code>). All elements are placed within a structured layout for an intuitive user interface.
+    </p>
 
+    <h3>📌 GUI Elements Explained</h3>
+    <ul>
+        <li><strong>QApplication</strong>: The main application handler.</li>
+        <li><strong>QWidget</strong>: The base class for the main window.</li>
+        <li><strong>QVBoxLayout</strong>: Arranges widgets in a vertical order.</li>
+        <li><strong>QLabel</strong>: Displays labels for Name, Age, and Course.</li>
+        <li><strong>QLineEdit</strong>: Text input fields for user input.</li>
+        <li><strong>QPushButton</strong>: A button to trigger student registration.</li>
+        <li><strong>QTextEdit</strong>: Displays registered students and messages.</li>
+    </ul>
+
+    <h3>🚀 How the GUI Works (Step-by-Step)</h3>
+    <ol>
+        <li>The user enters Name, Age, and Course in <code>QLineEdit</code> fields.</li>
+        <li>Clicking the <strong>Register Student</strong> button triggers <code>register_student()</code>.</li>
+        <li>A new <code>Student</code> object is created and stored in a list.</li>
+        <li>The student's details are displayed in the <code>QTextEdit</code> area.</li>
+        <li>Input fields are cleared for the next entry.</li>
+    </ol>
     <h2>🔹 Next Steps (Advanced Features)</h2>
     <ol>
         <li>💾 <strong>Database (SQLite)</strong> → Save student data permanently.</li>
@@ -198,4 +221,4 @@ app.exec()
 </body>
 </html>
 <h2>📖 More Practice</h2>
-<p>Want to practice more? Try some additional exercises! 👉 <a href="Exercises.html">More Exercises</a></p>
+<p>Want to practice more? Try some additional exercises! 👉 <a href="exercises.html">More Exercises</a></p>
